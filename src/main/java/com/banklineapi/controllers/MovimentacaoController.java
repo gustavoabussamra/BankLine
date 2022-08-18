@@ -17,13 +17,17 @@ public class MovimentacaoController {
 
     @Autowired
     private MovimentacaoService service;
+
     @GetMapping
     public List<Movimentacao> findAll(){
         return repository.findAll();
     }
-@PostMapping
+    @GetMapping("/{idConta}")
+    public List<Movimentacao> findAll(@PathVariable("idConta") Integer idConta){
+        return repository.findByIdConta(idConta);
+    }
+    @PostMapping
     public void save(@RequestBody NovaMovimentacao movimentacao) {
         service.save(movimentacao);
     }
-
 }
